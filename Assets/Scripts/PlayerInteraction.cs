@@ -32,7 +32,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             GameOver("You Died!");
         }
-        Debug.Log(collision.gameObject.name);
+        //Debug.Log(collision.gameObject.name);
         if (collision.gameObject.tag == "Crystal")
         {
             crystalCollected++;

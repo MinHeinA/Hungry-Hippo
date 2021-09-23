@@ -37,7 +37,7 @@ public class ShadowCaster2DTileMap : MonoBehaviour
 
         tilemapCollider = GetComponent<CompositeCollider2D>();
 
-        for (int i = 2; i < tilemapCollider.pathCount; i++)
+        for (int i = 1; i < tilemapCollider.pathCount; i++)
         {
             Vector2[] pathVertices = new Vector2[tilemapCollider.GetPathPointCount(i)];
             tilemapCollider.GetPath(i, pathVertices);
