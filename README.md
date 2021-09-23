@@ -3,6 +3,7 @@ Repo for NUS GDG Level 1 Game - Hungry Hippos
 
 Unity game made for NUS Game Development Group Level 1 Game and it is not intended for distribution or sale.
 
+
 Credits: 
 
 Art Assets -
@@ -12,4 +13,5 @@ Art Assets -
   Placeholder Crystal sprite added by Chaikwaza on https://crashbandicoot.fandom.com/wiki/Crystal
 
 Scripts -
+
   ShadowCaster2DTileMap.cs by SeksitSeeton - https://github.com/SeksitSeeton/Auto-add-Shadow-Caster-2D-on-TileMap/tree/main/Assets
