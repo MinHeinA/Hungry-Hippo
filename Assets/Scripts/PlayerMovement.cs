@@ -16,16 +16,21 @@ public class PlayerMovement : MonoBehaviour
 
     bool canMoveOnX, canMoveOnY = false;
 
-    // Handle User Input
+    // Handle User Input and animator variable assignments
     void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
+        // set variables to play appropriate directional move animation
         if (canMoveOnX) { animator.SetFloat("moveX", movement.x); }
         if (canMoveOnY) { animator.SetFloat("moveY", movement.y); }
+
+        // set variable for animation transition between idle and move animation states 
         animator.SetFloat("speed", movement.sqrMagnitude);
 
+        // set variables to play appropriate directional idle animation
+        // this is needed to "remember" the where the character was facing
         if (movement.x == 1 || movement.x == -1 || movement.y == 1 || movement.y == -1)
         {
             animator.SetFloat("lastMoveX", movement.x);
@@ -33,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    //Handle Movement
+    //Handle Player movement
     void FixedUpdate()
     {
         PlayerMove();
@@ -41,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void PlayerMove()
     {
+        //Locks player movement to only one direction
         if (canMoveOnX && movement.x != 0)
         {
             canMoveOnY = false;
@@ -64,6 +70,7 @@ public class PlayerMovement : MonoBehaviour
 
     void RotateFlashlight()
     {
+        //rotates child flashlight gameobject according to player movement direction 
         var rotationVector = transform.rotation.eulerAngles;
         if (movement.x > 0.1f && canMoveOnX)
         {

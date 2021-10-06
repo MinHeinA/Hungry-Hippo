@@ -11,6 +11,7 @@ public class PlayerAction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Spacebar to toggle flashlight on and off
         if (Input.GetKeyDown(KeyCode.Space))
         {
             isFlashlightOn = !isFlashlightOn;

@@ -7,6 +7,7 @@ using TMPro;
 public class GameOverScreen : MonoBehaviour
 {
     public TextMeshProUGUI gameOverTextUI;
+
     public void Setup(string gameOverText)
     {
         Time.timeScale = 0;

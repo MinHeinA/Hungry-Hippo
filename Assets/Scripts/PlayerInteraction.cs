@@ -7,7 +7,6 @@ public class PlayerInteraction : MonoBehaviour
 {
     private int crystalCollected = 0;
     private int noOfCrystals = 0;
-    // Update is called once per frame
     public TextMeshProUGUI crystalScore;
     public GameOverScreen gameOverScreen;
 
