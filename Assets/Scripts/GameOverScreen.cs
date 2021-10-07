@@ -25,7 +25,7 @@ public class GameOverScreen : MonoBehaviour
     {
         //TO-DO change to Main Menu once main menu is implemented
         Time.timeScale = 1;
-        SceneManager.LoadScene("Level_1");
+        SceneManager.LoadScene("MainMenu");
     }
     
 }
