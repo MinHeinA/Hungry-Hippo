@@ -1,7 +1,7 @@
 # Hungry-Hippo
 Repo for NUS GDG Level 1 Game - Hungry Hippos
 
-Unity game made for NUS Game Development Group Level 1 Game and it is not intended for distribution or sale.
+Unity game made for NUS Game Development Group Level 1 Game. It is for educational purposes and is not intended for distribution or sale.
 
 
 Credits: 
