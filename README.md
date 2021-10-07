@@ -11,6 +11,10 @@ Art Assets -
   Placeholder Background and Character art by Goldmetal - https://assetstore.unity.com/packages/2d/characters/top-down-2d-rpg-assets-pack-188718 
   
   Placeholder Crystal sprite added by Chaikwaza on https://crashbandicoot.fandom.com/wiki/Crystal
+  
+  Bloodstain1 sprite on http://clipart-library.com/clip-art/blood-splatter-transparent-25.htm
+  
+  Main menu font on https://www.fontspace.com/nightmare-pills-font-f30706
 
 Scripts -
 
