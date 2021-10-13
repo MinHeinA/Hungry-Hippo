@@ -19,22 +19,25 @@ public class PlayerMovement : MonoBehaviour
     // Handle User Input and animator variable assignments
     void Update()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-
-        // set variables to play appropriate directional move animation
-        if (canMoveOnX) { animator.SetFloat("moveX", movement.x); }
-        if (canMoveOnY) { animator.SetFloat("moveY", movement.y); }
-
-        // set variable for animation transition between idle and move animation states 
-        animator.SetFloat("speed", movement.sqrMagnitude);
-
-        // set variables to play appropriate directional idle animation
-        // this is needed to "remember" the where the character was facing
-        if (movement.x == 1 || movement.x == -1 || movement.y == 1 || movement.y == -1)
+        if (!GameOverScreen.gameIsOver && !PauseMenu.gameIsPaused)
         {
-            animator.SetFloat("lastMoveX", movement.x);
-            animator.SetFloat("lastMoveY", movement.y);
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
+
+            // set variables to play appropriate directional move animation
+            if (canMoveOnX) { animator.SetFloat("moveX", movement.x); }
+            if (canMoveOnY) { animator.SetFloat("moveY", movement.y); }
+
+            // set variable for animation transition between idle and move animation states 
+            animator.SetFloat("speed", movement.sqrMagnitude);
+
+            // set variables to play appropriate directional idle animation
+            // this is needed to "remember" the where the character was facing
+            if (movement.x == 1 || movement.x == -1 || movement.y == 1 || movement.y == -1)
+            {
+                animator.SetFloat("lastMoveX", movement.x);
+                animator.SetFloat("lastMoveY", movement.y);
+            }
         }
     }
 

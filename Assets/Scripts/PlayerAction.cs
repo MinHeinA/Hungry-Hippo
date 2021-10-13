@@ -12,7 +12,7 @@ public class PlayerAction : MonoBehaviour
     void Update()
     {
         //Spacebar to toggle flashlight on and off
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !GameOverScreen.gameIsOver && !PauseMenu.gameIsPaused)
         {
             isFlashlightOn = !isFlashlightOn;
 

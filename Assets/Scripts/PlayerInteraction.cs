@@ -25,11 +25,11 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (collision.gameObject.tag == "Finish" && crystalCollected == noOfCrystals)
         {
-            GameOver("You Win!");
+            GameOver("YOU WIN!");
         }
         if (collision.gameObject.tag == "Enemy")
         {
-            GameOver("You Died!");
+            GameOver("YOU DIED!");
         }
         //Debug.Log(collision.gameObject.name);
         if (collision.gameObject.tag == "Crystal")

@@ -6,25 +6,31 @@ using TMPro;
 
 public class GameOverScreen : MonoBehaviour
 {
+    public static bool gameIsOver = false;
     public TextMeshProUGUI gameOverTextUI;
+    public GameObject gameOverUI;
 
+    void Start()
+    {
+        gameIsOver = false;
+    }
     public void Setup(string gameOverText)
     {
-        Time.timeScale = 0;
-        gameObject.SetActive(true);
+        Time.timeScale = 0f;
+        gameOverUI.SetActive(true);
         gameOverTextUI.text = gameOverText;
+        gameIsOver = true;
     } 
     
-    public void RestartButton()
+    public void Restart()
     {
-        Time.timeScale = 1;
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public void ExitButton()
+    public void LoadMenu()
     {
-        //TO-DO change to Main Menu once main menu is implemented
-        Time.timeScale = 1;
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
     
