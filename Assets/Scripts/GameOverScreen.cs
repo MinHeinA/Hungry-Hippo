@@ -20,7 +20,7 @@ public class GameOverScreen : MonoBehaviour
         gameOverUI.SetActive(true);
         gameOverTextUI.text = gameOverText;
         gameIsOver = true;
-    } 
+    }
     
     public void Restart()
     {
