@@ -18,6 +18,7 @@ public class EnemyMovement : MonoBehaviour
     float xpos = 0, ypos = 0;
     string[] obstacleCoords;
 
+
     private void Start()
     {
         player = FindObjectOfType<PlayerAction>().transform;
@@ -53,7 +54,6 @@ public class EnemyMovement : MonoBehaviour
                 TileBase tile = tileArray[x + y * bounds.size.x];
                 if (tile != null && tile.name != "Tree 3") //Tree 3 is the sprite that contains the shadow of the tree
                 {
-                    //Debug.Log("x:" + x + " y:" + y + " tile:" + tile.name);
                     coords.Add(x.ToString() + ";" + y.ToString());
                 }
             }

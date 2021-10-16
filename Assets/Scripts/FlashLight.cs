@@ -33,7 +33,6 @@ public class FlashLight : MonoBehaviour
             if(light2D.intensity > minBrightness)
             {
                 light2D.intensity -= Time.deltaTime * (drainRate / 1000);
-                Debug.Log(light2D.intensity);
             }
             else
             {
