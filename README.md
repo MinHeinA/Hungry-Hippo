@@ -19,5 +19,4 @@ Art Assets -
 Scripts -
 
   ShadowCaster2DTileMap.cs by SeksitSeeton - https://github.com/SeksitSeeton/Auto-add-Shadow-Caster-2D-on-TileMap/tree/main/Assets
-  
-  NavMeshPlus by h8man - https://github.com/h8man/NavMeshPlus
+
