@@ -60,7 +60,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2.15
+  orthographic size: 2.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 0.35
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
@@ -235,14 +235,14 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 0.3
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 0
   m_LightOrder: 0
   m_AlphaBlendOnOverlap: 0
-  m_ShadowIntensity: 1
+  m_ShadowIntensity: 0.6
   m_ShadowVolumeIntensity: 0
   m_PointLightInnerAngle: 71.4
   m_PointLightOuterAngle: 94.04
@@ -270,13 +270,14 @@ GameObject:
   m_Component:
   - component: {fileID: 3711576647822568369}
   - component: {fileID: 3711576647822568368}
+  - component: {fileID: 337184890}
   m_Layer: 0
   m_Name: Flashlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3711576647822568369
 Transform:
   m_ObjectHideFlags: 0
@@ -320,6 +321,24 @@ PolygonCollider2D:
     - - {x: -0.000013735145, y: 0.9456934}
       - {x: -1.3, y: -1.05}
       - {x: 1.3, y: -1.05}
+--- !u!114 &337184890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3711576647822568370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6292078f1621eb0418838fe66c6d74f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashLightCollider: {fileID: 0}
+  light2D: {fileID: 0}
+  maxBrightness: 0.4
+  minBrightness: 0
+  drainRate: 20
+  batteryDrain: 1
 --- !u!1 &3711576648061892837
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,7 +495,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf29651b277c2e74083aedbc84eff3f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashLight: {fileID: 3711576647822568370}
 --- !u!114 &3711576648061892845
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,28 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class PlayerAction : MonoBehaviour
 {
-    public GameObject flashLight;
-
-    bool isFlashlightOn = false;
+    FlashLight flashlight;
 
     // Update is called once per frame
+    private void Start()
+    {
+        flashlight = FindObjectOfType<FlashLight>();
+    }
     void Update()
     {
         //Spacebar to toggle flashlight on and off
         if (Input.GetKeyDown(KeyCode.Space) && !GameOverScreen.gameIsOver && !PauseMenu.gameIsPaused)
         {
-            isFlashlightOn = !isFlashlightOn;
-
-            if (isFlashlightOn)
-            {
-                flashLight.SetActive(true);
-            } else
-            {
-                flashLight.SetActive(false);
-            }
+            flashlight.ToogleFlashlight();
         }
     }
 }
