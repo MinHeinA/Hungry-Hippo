@@ -14,6 +14,12 @@ public class FlashLight : MonoBehaviour
     public float minBrightness;
     public float drainRate;
     public bool batteryDrain = true;
+
+    public float maxBatteryLevel = 100;
+    public float currentBatteryLevel;
+    public bool batteryDead = false;
+    public BatteryStatus batteryStatus;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -22,15 +28,33 @@ public class FlashLight : MonoBehaviour
         light2D.intensity = maxBrightness;
         flashLightCollider.enabled = false;
         light2D.enabled = false;
+
+        currentBatteryLevel = maxBatteryLevel;
+        batteryStatus.SetMaxBatteryLevel();
     }
 
     // Update is called once per frame
     private void Update()
     {
         light2D.intensity = Mathf.Clamp(light2D.intensity, minBrightness, maxBrightness);
+
+        if (batteryDead)
+        {
+            flashLightCollider.enabled = false;
+            light2D.enabled = false;
+        }
+
         if (light2D.enabled && batteryDrain)
         {
-            if(light2D.intensity > minBrightness)
+            if (currentBatteryLevel > 0.2) {
+                depleteBattery((float)0.2);
+            } 
+            else
+            {
+                batteryDead = true;
+            }
+
+            if (light2D.intensity > minBrightness)
             {
                 light2D.intensity -= Time.deltaTime * (drainRate / 1000);
             }
@@ -41,17 +65,33 @@ public class FlashLight : MonoBehaviour
         }
     }
 
+    void depleteBattery(float batteryLevel)
+    {
+        currentBatteryLevel -= batteryLevel;
+        batteryStatus.SetBatteryLevel(currentBatteryLevel);
+    }
+
+    // Call this method when player obtain battery. 
+    void rechargeBattery(float batteryLevel)
+    {
+        currentBatteryLevel = maxBatteryLevel;
+        batteryStatus.SetMaxBatteryLevel();
+    }
+
     public void ToogleFlashlight()
     {
-        if (!light2D.enabled && light2D.intensity > minBrightness)
+        if (!(batteryDead))
         {
-            flashLightCollider.enabled = true;
-            light2D.enabled = true;
-        }
-        else
-        {
-            flashLightCollider.enabled = false;
-            light2D.enabled = false;
+            if (!light2D.enabled && light2D.intensity > minBrightness)
+            {
+                flashLightCollider.enabled = true;
+                light2D.enabled = true;
+            }
+            else
+            {
+                flashLightCollider.enabled = false;
+                light2D.enabled = false;
+            }
         }
     }
 }
