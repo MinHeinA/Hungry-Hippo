@@ -11,20 +11,60 @@ public class EnemyMovement : MonoBehaviour
     public float movementRate = 0.01f;
     public int xmin = 0, xmax = 15, ymin = 0, ymax = 6;
     public Tilemap tilemap;
+    public int minSquare = 3;
+    public float stunTime = 1f;
 
     // private variables
     Transform player;
     bool stillmoving = false;
     float xpos = 0, ypos = 0;
     string[] obstacleCoords;
+    bool[] isObstacle = new bool[16 * 7];
+    Animator myAnim;
+    // 0 - Unalerted, 1 - Chase Crystal, 2 - Chase Player, 3 - Detected, 4 - Crazy
+    int hippostate = 0;
+    int targetxpos = 0, targetypos = 0;
+    float countdown = 0f;
 
 
     private void Start()
     {
         player = FindObjectOfType<PlayerAction>().transform;
+        myAnim = GetComponent<Animator>();
+        hippostate = 0;
         xpos = Mathf.Round(transform.position.x);
         ypos = Mathf.Round(transform.position.y);
         obstacleCoords = GetObstacles().ToArray();
+        for (int i = 0; i < obstacleCoords.Length; i++)
+        {
+            int x = Int32.Parse(obstacleCoords[i].Split(';')[0]);
+            int y = Int32.Parse(obstacleCoords[i].Split(';')[1]);
+            isObstacle[x + y * (xmax + 1)] = true;
+        }
+    }
+
+    // when triggered by flashlight collider, then change state to detected
+    void OnTriggerStay2D(Collider2D other)
+    {
+        // crazy state is not affected by flashlight
+        if (hippostate == 3) return;
+
+        // stun hippo, then make hippo return to unalerted
+        countdown = stunTime;
+        myAnim.speed = 0;
+        hippostate = 0;
+    }
+
+    public void Crazy()
+    {
+        hippostate = 3;
+    }
+
+    public void ChaseCrystal(int x, int y)
+    {
+        targetxpos = x;
+        targetypos = y;
+        hippostate = 1;
     }
 
     List<string> GetObstacles()
@@ -70,9 +110,16 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
+        if (countdown > 0)
+        {
+            countdown -= Time.deltaTime;
+            return;
+        }
+
         // complete the movement first if the hippo is still moving
         if (stillmoving)
         {
+            myAnim.speed = 1;
             Move(xpos, ypos);
             // check if the hippo has reached its destination
             if (xpos == transform.position.x && ypos == transform.position.y)
@@ -86,10 +133,67 @@ public class EnemyMovement : MonoBehaviour
         {
             float playerx = Mathf.Round(player.position.x), playery = Mathf.Round(player.position.y);
             float startpos = transform.position.x + transform.position.y * (xmax + 1);
-            float endpos = playerx + playery * (xmax + 1);
+            float endpos = 0;
+            // change endpos to the corresponding target
+
+            // if the hippo is at unalerted or chase crystal state, and within x squares from player,
+            // then chase player
+
+            if (hippostate <= 1 &&
+            Mathf.Pow(playerx - transform.position.x, 2) + Mathf.Pow(playery - transform.position.y, 2) < minSquare * minSquare)
+                hippostate = 2;
+
+            // 0 - Unalerted, 1 - Chase Crystal, 2 - Chase Player, 3 - Crazy
+            if (hippostate == 0)
+            {
+                int newxpos = (int)transform.position.x, newypos = (int)transform.position.y;
+                do
+                {
+                    int newdir = UnityEngine.Random.Range(0, 4);
+                    // up
+                    if (newdir == 0 && newypos < ymax)
+                    {
+                        endpos = newxpos + (newypos + 1) * (xmax + 1);
+                    }
+                    // right
+                    else if (newdir == 1 && newxpos < xmax)
+                    {
+                        endpos = (newxpos + 1) + newypos * (xmax + 1);
+                    }
+                    // down
+                    else if (newdir == 2 && newypos > ymin)
+                    {
+                        endpos = newxpos + (newypos - 1) * (xmax + 1);
+                    }
+                    // left
+                    else if (newdir == 3 && newxpos > xmin)
+                    {
+                        endpos = (newxpos - 1) + newypos * (xmax + 1);
+                    }
+                    else { endpos = -1; }
+                } while (endpos < 0 || isObstacle[(int)endpos]);
+
+            }
+            else if (hippostate == 1)
+            {
+                // chase the crystal
+                endpos = targetxpos + targetypos * (xmax + 1);
+            }
+            else if (hippostate == 2 || hippostate == 3)
+            {
+                // Chase Player chases to the player location
+                endpos = playerx + playery * (xmax + 1);
+            }
+
+            // if hippo is already at target position, then set idle animation and go back to unalerted
+            if (startpos == endpos)
+            {
+                myAnim.SetTrigger("Idle");
+                hippostate = 0;
+            }
+
             int dir = BFS((int)startpos, (int)endpos);
 
-            // TODO: ADD animations based on the hippo direction
             if (dir == 0) return;
             else
             {
@@ -104,6 +208,16 @@ public class EnemyMovement : MonoBehaviour
                 else if (dir == 3) ypos--;
                 // left
                 else if (dir == 4) xpos--;
+
+                // Set up the animations based on hippo direction
+                // up
+                if (dir == 1) myAnim.SetTrigger("WalkUp");
+                // right
+                else if (dir == 2) myAnim.SetTrigger("WalkRight");
+                // down
+                else if (dir == 3) myAnim.SetTrigger("WalkDown");
+                // left
+                else if (dir == 4) myAnim.SetTrigger("WalkLeft");
             }
         }
 
@@ -121,8 +235,8 @@ public class EnemyMovement : MonoBehaviour
             // Set inaccessible positions as visited in visited list
             // Positions: (14, 1), (14, 2), (12, 3), (12, 4), (12, 5), (9, 2), (9, 3), (9, 4), (5, 2), (5, 3), (5, 4)
             // (2, 3), (2, 4), (2, 5)
-            int[] obstaclex = { 14, 14, 12, 12, 12, 9, 9, 9, 5, 5, 5, 2, 2, 2 };
-            int[] obstacley = { 1, 2, 3, 4, 5, 2, 3, 4, 2, 3, 4, 3, 4, 5 };
+            // int[] obstaclex = { 14, 14, 12, 12, 12, 9, 9, 9, 5, 5, 5, 2, 2, 2 };
+            // int[] obstacley = { 1, 2, 3, 4, 5, 2, 3, 4, 2, 3, 4, 3, 4, 5 };
             for (int i = 0; i < obstacleCoords.Length; i++)
             {
                 int x = Int32.Parse(obstacleCoords[i].Split(';')[0]);

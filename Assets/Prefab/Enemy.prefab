@@ -138,3 +138,5 @@ MonoBehaviour:
   ymin: 0
   ymax: 6
   tilemap: {fileID: 0}
+  minSquare: 3
+  stunTime: 1

@@ -36,6 +36,11 @@ public class PlayerInteraction : MonoBehaviour
         {
             crystalCollected++;
             crystalScore.text = crystalCollected.ToString() + " / " + noOfCrystals.ToString();
+            FindObjectOfType<EnemyMovement>().ChaseCrystal(
+                (int)collision.gameObject.transform.position.x, (int)collision.gameObject.transform.position.y);
+
+            if (crystalCollected == noOfCrystals) FindObjectOfType<EnemyMovement>().Crazy();
+
             Destroy(collision.gameObject);
         }
     }
