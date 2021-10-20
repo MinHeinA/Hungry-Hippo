@@ -25,12 +25,15 @@ public class EnemyMovement : MonoBehaviour
     int hippostate = 0;
     int targetxpos = 0, targetypos = 0;
     float countdown = 0f;
+    SpriteRenderer spriteRenderer;
+    Color hippoTint;
 
 
     private void Start()
     {
         player = FindObjectOfType<PlayerAction>().transform;
         myAnim = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         hippostate = 0;
         xpos = Mathf.Round(transform.position.x);
         ypos = Mathf.Round(transform.position.y);
@@ -41,6 +44,15 @@ public class EnemyMovement : MonoBehaviour
             int y = Int32.Parse(obstacleCoords[i].Split(';')[1]);
             isObstacle[x + y * (xmax + 1)] = true;
         }
+    }
+
+    private Color HexToColor(String hexCode)
+    {
+        if (ColorUtility.TryParseHtmlString(hexCode, out hippoTint))
+        {
+            return hippoTint;
+        }
+        return hippoTint;
     }
 
     // when triggered by flashlight collider, then change state to detected
@@ -58,6 +70,7 @@ public class EnemyMovement : MonoBehaviour
     public void Crazy()
     {
         hippostate = 3;
+        spriteRenderer.color = HexToColor("#FF1B00");
     }
 
     public void ChaseCrystal(int x, int y)
@@ -112,6 +125,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if (countdown > 0)
         {
+            spriteRenderer.color = HexToColor("#00FAFF");
             countdown -= Time.deltaTime;
             return;
         }
@@ -142,6 +156,8 @@ public class EnemyMovement : MonoBehaviour
             if (hippostate <= 1 &&
             Mathf.Pow(playerx - transform.position.x, 2) + Mathf.Pow(playery - transform.position.y, 2) < minSquare * minSquare)
                 hippostate = 2;
+
+            if (hippostate <= 2) spriteRenderer.color = HexToColor("#FFFFFF");
 
             // 0 - Unalerted, 1 - Chase Crystal, 2 - Chase Player, 3 - Crazy
             if (hippostate == 0)
