@@ -54,4 +54,18 @@ public class PlayerInteraction : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
+
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "StickyTrap")
+        {
+            FindObjectOfType<PlayerMovement>().slowPlayer();
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        FindObjectOfType<PlayerMovement>().resetPlayerSpeed();
+    }
+
 }
