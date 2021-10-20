@@ -7,10 +7,10 @@ public class BatteryStatus : MonoBehaviour
 {
     public Slider slider;
 
-    public void SetMaxBatteryLevel()
+    public void SetMaxBatteryLevel(float maxValue)
     {
-        slider.maxValue = 100;
-        slider.value = 100;
+        slider.maxValue = maxValue;
+        slider.value = maxValue;
     }
 
     public void SetBatteryLevel(float batteryLevel)

@@ -15,8 +15,6 @@ public class FlashLight : MonoBehaviour
     public float drainRate;
     public bool batteryDrain = true;
 
-    public float maxBatteryLevel = 100;
-    public float currentBatteryLevel;
     public bool batteryDead = false;
     public BatteryStatus batteryStatus;
 
@@ -29,8 +27,7 @@ public class FlashLight : MonoBehaviour
         flashLightCollider.enabled = false;
         light2D.enabled = false;
 
-        currentBatteryLevel = maxBatteryLevel;
-        batteryStatus.SetMaxBatteryLevel();
+        batteryStatus.SetMaxBatteryLevel(maxBrightness);
     }
 
     // Update is called once per frame
@@ -46,36 +43,27 @@ public class FlashLight : MonoBehaviour
 
         if (light2D.enabled && batteryDrain)
         {
-            if (currentBatteryLevel > 0.2) {
-                depleteBattery((float)0.2);
+            if (light2D.intensity > minBrightness) {
+                depleteBattery();
             } 
             else
             {
                 batteryDead = true;
             }
-
-            if (light2D.intensity > minBrightness)
-            {
-                light2D.intensity -= Time.deltaTime * (drainRate / 1000);
-            }
-            else
-            {
-                flashLightCollider.enabled = false;
-            }
         }
     }
 
-    void depleteBattery(float batteryLevel)
+    void depleteBattery()
     {
-        currentBatteryLevel -= batteryLevel;
-        batteryStatus.SetBatteryLevel(currentBatteryLevel);
+        light2D.intensity -= Time.deltaTime * (drainRate / 1000);
+        batteryStatus.SetBatteryLevel(light2D.intensity);
     }
 
     // Call this method when player obtain battery. 
-    void rechargeBattery(float batteryLevel)
+    void rechargeBattery()
     {
-        currentBatteryLevel = maxBatteryLevel;
-        batteryStatus.SetMaxBatteryLevel();
+        light2D.intensity = maxBrightness;
+        batteryStatus.SetMaxBatteryLevel(maxBrightness);
     }
 
     public void ToogleFlashlight()
