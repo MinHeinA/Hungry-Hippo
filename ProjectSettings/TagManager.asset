@@ -7,6 +7,7 @@ TagManager:
   - Crystal
   - Enemy
   - Battery
+  - StickyTrap
   layers:
   - Default
   - TransparentFX

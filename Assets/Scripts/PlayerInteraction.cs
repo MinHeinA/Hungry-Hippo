@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Threading;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -27,10 +28,12 @@ public class PlayerInteraction : MonoBehaviour
         {
             GameOver("YOU WIN!");
         }
+
         if (collision.gameObject.tag == "Enemy")
         {
             GameOver("YOU DIED!");
         }
+
         //Debug.Log(collision.gameObject.name);
         if (collision.gameObject.tag == "Crystal")
         {
@@ -43,7 +46,7 @@ public class PlayerInteraction : MonoBehaviour
 
             Destroy(collision.gameObject);
         }
-
+       
         if (collision.gameObject.tag == "Battery")
         {
             FindObjectOfType<FlashLight>().rechargeBattery();

@@ -47,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
         PlayerMove();
         RotateFlashlight();
     }
+
     void PlayerMove()
     {
         //Locks player movement to only one direction
@@ -94,5 +95,15 @@ public class PlayerMovement : MonoBehaviour
             rotationVector.z = 0;
             flashLight.transform.rotation = Quaternion.Euler(rotationVector);
         }
+    }
+
+    public void slowPlayer()
+    {
+        moveSpeed = 2f;
+    }
+
+    public void resetPlayerSpeed()
+    {
+        moveSpeed = 5f;
     }
 }
