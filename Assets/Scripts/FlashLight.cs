@@ -60,7 +60,7 @@ public class FlashLight : MonoBehaviour
     }
 
     // Call this method when player obtain battery. 
-    void rechargeBattery()
+    public void rechargeBattery()
     {
         light2D.intensity = maxBrightness;
         batteryStatus.SetMaxBatteryLevel(maxBrightness);

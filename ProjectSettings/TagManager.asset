@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Crystal
   - Enemy
+  - Battery
   layers:
   - Default
   - TransparentFX

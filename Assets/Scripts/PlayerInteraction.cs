@@ -43,5 +43,12 @@ public class PlayerInteraction : MonoBehaviour
 
             Destroy(collision.gameObject);
         }
+
+        if (collision.gameObject.tag == "Battery")
+        {
+            FindObjectOfType<FlashLight>().rechargeBattery();
+            FindObjectOfType<FlashLight>().batteryDead = false;
+            Destroy(collision.gameObject);
+        }
     }
 }
