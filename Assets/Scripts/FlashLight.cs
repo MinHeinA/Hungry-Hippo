@@ -17,6 +17,7 @@ public class FlashLight : MonoBehaviour
 
     public bool batteryDead = false;
     public BatteryStatus batteryStatus;
+    private AudioSource audioData;
 
     // Start is called before the first frame update
     private void Start()
@@ -27,6 +28,7 @@ public class FlashLight : MonoBehaviour
         flashLightCollider.enabled = false;
         light2D.enabled = false;
 
+        audioData = GetComponent<AudioSource>();
         batteryStatus.SetMaxBatteryLevel(maxBrightness);
     }
 
@@ -68,6 +70,7 @@ public class FlashLight : MonoBehaviour
 
     public void ToogleFlashlight()
     {
+        audioData.Play(0);
         if (!(batteryDead))
         {
             if (!light2D.enabled && light2D.intensity > minBrightness)
