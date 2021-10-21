@@ -457,7 +457,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &273427234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8602,6 +8602,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4833908405560632355, guid: 29a7cedf33111924b95261e25ca5ca65, type: 3}
+      propertyPath: groundTilemap
+      value: 
+      objectReference: {fileID: 1289048272}
+    - target: {fileID: 4833908405560632355, guid: 29a7cedf33111924b95261e25ca5ca65, type: 3}
+      propertyPath: secondLayerTilemap
+      value: 
+      objectReference: {fileID: 676436248}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29a7cedf33111924b95261e25ca5ca65, type: 3}
 --- !u!1001 &6826114565204037810

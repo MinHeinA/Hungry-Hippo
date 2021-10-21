@@ -10,7 +10,8 @@ public class EnemyMovement : MonoBehaviour
     // public variables
     public float movementRate = 0.01f;
     public int xmin = 0, xmax = 15, ymin = 0, ymax = 6;
-    public Tilemap tilemap;
+    public Tilemap secondLayerTilemap;
+    public Tilemap groundTilemap;
     public int minSquare = 3;
     public float stunTime = 1f;
 
@@ -38,7 +39,7 @@ public class EnemyMovement : MonoBehaviour
         hippostate = 0;
         xpos = Mathf.Round(transform.position.x);
         ypos = Mathf.Round(transform.position.y);
-        obstacleCoords = GetObstacles().ToArray();
+        obstacleCoords = GetObstacles(secondLayerTilemap).ToArray();
         for (int i = 0; i < obstacleCoords.Length; i++)
         {
             int x = Int32.Parse(obstacleCoords[i].Split(';')[0]);
@@ -81,7 +82,7 @@ public class EnemyMovement : MonoBehaviour
         hippostate = 1;
     }
 
-    List<string> GetObstacles()
+    List<string> GetObstacles(Tilemap tilemap)
     {
         Vector3Int bottomLeft = new Vector3Int(xmin, ymin, 0); //coord x = 0, y = 0
         Vector3Int topRight = new Vector3Int(xmax, ymax, 0); // coord x = 15, y = 6
@@ -106,7 +107,7 @@ public class EnemyMovement : MonoBehaviour
             for (int y = 0; y < bounds.size.y; y++)
             {
                 TileBase tile = tileArray[x + y * bounds.size.x];
-                if (tile != null && tile.name != "Tree 3") //Tree 3 is the sprite that contains the shadow of the tree
+                if (tile != null && tile.name != "Tree 3" && tile.name != "safezone") //Tree 3 is the sprite that contains the shadow of the tree
                 {
                     coords.Add(x.ToString() + ";" + y.ToString());
                 }
