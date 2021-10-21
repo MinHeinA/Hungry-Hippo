@@ -7821,6 +7821,10 @@ PrefabInstance:
       propertyPath: batteryStatus
       value: 
       objectReference: {fileID: 776534315}
+    - target: {fileID: 3711576648061892836, guid: f6e086cf0b2086e48a88feb3fbcaaecc, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3711576648061892837, guid: f6e086cf0b2086e48a88feb3fbcaaecc, type: 3}
       propertyPath: m_Name
       value: Player
@@ -7953,6 +7957,10 @@ PrefabInstance:
     - target: {fileID: 4833908405107304347, guid: 29a7cedf33111924b95261e25ca5ca65, type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833908405107304347, guid: 29a7cedf33111924b95261e25ca5ca65, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4833908405560632352, guid: 29a7cedf33111924b95261e25ca5ca65, type: 3}
       propertyPath: m_Controller
