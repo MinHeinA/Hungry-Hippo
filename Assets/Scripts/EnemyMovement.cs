@@ -19,7 +19,7 @@ public class EnemyMovement : MonoBehaviour
     bool stillmoving = false;
     float xpos = 0, ypos = 0;
     string[] obstacleCoords;
-    bool[] isObstacle = new bool[16 * 7];
+    bool[] isObstacle;
     Animator myAnim;
     // 0 - Unalerted, 1 - Chase Crystal, 2 - Chase Player, 3 - Detected, 4 - Crazy
     int hippostate = 0;
@@ -31,6 +31,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Start()
     {
+        isObstacle = new bool[(xmax + 1) * (ymax + 1)];
         player = FindObjectOfType<PlayerAction>().transform;
         myAnim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -121,7 +122,7 @@ public class EnemyMovement : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, new Vector3(x, y, transform.position.z), movementRate);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (countdown > 0)
         {
@@ -242,9 +243,9 @@ public class EnemyMovement : MonoBehaviour
         {
             // node position is given by y*width + x
             // (bool) array of size [width*height] - contains whether the node position is visited
-            bool[] isVisited = new bool[16 * 7];
+            bool[] isVisited = new bool[(xmax + 1) * (ymax + 1)];
             // (int) direction array of size [width*height] - contains direction variable (0 - undef, 1 - up, 2 - right, 3 - down, 4 - left)
-            int[] dir = new int[16 * 7];
+            int[] dir = new int[(xmax + 1) * (ymax + 1)];
             // queue to determine the order of expanding nodes
             Queue<int> node = new Queue<int>(); // First start with empty queue
 
