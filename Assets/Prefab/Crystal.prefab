@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1128887285243300122}
   - component: {fileID: 1128887285243300123}
   - component: {fileID: 1128887285243300197}
+  - component: {fileID: 1016261978}
   m_Layer: 0
   m_Name: Crystal
   m_TagString: Crystal
@@ -110,6 +111,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7.1659927, y: 31.25}
   m_EdgeRadius: 0
+--- !u!114 &1016261978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1128887285243300120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9efb78db44ea2714e8babed54c7f2479, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light2D: {fileID: 0}
 --- !u!1 &6793612541922474706
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,7 +171,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.713
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.35
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
