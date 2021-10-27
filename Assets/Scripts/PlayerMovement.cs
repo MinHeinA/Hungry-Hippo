@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject flashLight;
 
+    public AudioSource footStepsAudio;
+
     Vector2 movement;
 
     bool canMoveOnX, canMoveOnY = false;
@@ -68,6 +70,18 @@ public class PlayerMovement : MonoBehaviour
         if (movement.x == 0)
         {
             canMoveOnY = true;
+        }
+
+        if (!canMoveOnX || !canMoveOnY)
+        {
+            if (!footStepsAudio.isPlaying)
+            {
+                footStepsAudio.Play();
+            }
+        }
+        else
+        {
+            footStepsAudio.Stop();
         }
 
     }
