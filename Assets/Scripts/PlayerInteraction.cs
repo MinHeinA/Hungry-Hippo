@@ -39,6 +39,8 @@ public class PlayerInteraction : MonoBehaviour
         {
             crystalCollected++;
             crystalScore.text = crystalCollected.ToString() + " / " + noOfCrystals.ToString();
+            collision.gameObject.GetComponent<Mandrake>().PlayShriek();
+            GameObject.Find("One shot audio").GetComponent<AudioSource>().spatialBlend = 0.0f;
             FindObjectOfType<EnemyMovement>().ChaseCrystal(
                 (int)collision.gameObject.transform.position.x, (int)collision.gameObject.transform.position.y);
 

@@ -8351,6 +8351,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2018878334}
     m_Modifications:
+    - target: {fileID: 1016261978, guid: 89a09df17cd71df48b73fe31c8caadf2, type: 3}
+      propertyPath: audioClips.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1016261978, guid: 89a09df17cd71df48b73fe31c8caadf2, type: 3}
+      propertyPath: audioClips.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9d5df653e7135364ab09ccddb10a3e13, type: 3}
     - target: {fileID: 1128887285243300120, guid: 89a09df17cd71df48b73fe31c8caadf2, type: 3}
       propertyPath: m_Name
       value: Crystal
@@ -8471,7 +8479,7 @@ PrefabInstance:
       objectReference: {fileID: 776534315}
     - target: {fileID: 1044173555, guid: f6e086cf0b2086e48a88feb3fbcaaecc, type: 3}
       propertyPath: m_Volume
-      value: 0.5
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 3711576648061892837, guid: f6e086cf0b2086e48a88feb3fbcaaecc, type: 3}
       propertyPath: m_Name

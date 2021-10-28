@@ -14,6 +14,8 @@ public class EnemyMovement : MonoBehaviour
     public Tilemap groundTilemap;
     public int minSquare = 3;
     public float stunTime = 1f;
+    public AudioSource audioSrc;
+    public AudioClip[] audioClips;
 
     // private variables
     Transform player;
