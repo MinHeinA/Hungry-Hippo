@@ -46,8 +46,14 @@ public class PlayerMovement : MonoBehaviour
     //Handle Player movement
     void FixedUpdate()
     {
-        PlayerMove();
-        RotateFlashlight();
+        if (FindObjectOfType<GameOverScreen>().isGameOver())
+        {
+            audioSrc.Stop();
+        } else
+        {
+            PlayerMove();
+            RotateFlashlight();
+        } 
     }
 
     void PlayerMove()

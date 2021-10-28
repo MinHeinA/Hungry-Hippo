@@ -22,6 +22,10 @@ public class GameOverScreen : MonoBehaviour
         gameOverTextUI.text = gameOverText;
         gameIsOver = true;
     }
+    public bool isGameOver()
+    {
+        return gameIsOver;
+    }
     
     public void Restart()
     {

@@ -14,7 +14,8 @@ public class EnemyMovement : MonoBehaviour
     public Tilemap groundTilemap;
     public int minSquare = 3;
     public float stunTime = 1f;
-    public AudioSource audioSrc;
+    public AudioSource footStepsSrc;
+    public AudioSource alertSrc;
     public AudioSource bruhSrc;
     public AudioClip[] audioClips;
 
@@ -31,7 +32,7 @@ public class EnemyMovement : MonoBehaviour
     float countdown = 0f;
     SpriteRenderer spriteRenderer;
     Color hippoTint;
-    bool isPlayed = false;
+    bool alertedAudioPlayed = false;
 
 
     private void Start()
@@ -67,12 +68,21 @@ public class EnemyMovement : MonoBehaviour
         // crazy state is not affected by flashlight
         if (hippostate == 3) return;
 
-        bruhSrc.Play();
+        if (!bruhSrc.isPlaying && !alertedAudioPlayed)
+        {
+            bruhSrc.Play();
+            alertedAudioPlayed = true;
+        }
 
         // stun hippo, then make hippo return to unalerted
         countdown = stunTime;
         myAnim.speed = 0;
         hippostate = 0;
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        alertedAudioPlayed = false;
     }
 
     public void Crazy()
@@ -131,6 +141,16 @@ public class EnemyMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (FindObjectOfType<GameOverScreen>().isGameOver())
+        {
+            footStepsSrc.Stop();
+        } else
+        {
+            if (!footStepsSrc.isPlaying)
+            {
+                footStepsSrc.Play();
+            }
+        }
         if (countdown > 0)
         {
             spriteRenderer.color = HexToColor("#00FAFF");
@@ -170,8 +190,6 @@ public class EnemyMovement : MonoBehaviour
             // 0 - Unalerted, 1 - Chase Crystal, 2 - Chase Player, 3 - Crazy
             if (hippostate == 0)
             {
-                isPlayed = false;
-
                 int newxpos = (int)transform.position.x, newypos = (int)transform.position.y;
                 do
                 {
@@ -203,7 +221,6 @@ public class EnemyMovement : MonoBehaviour
             else if (hippostate == 1)
             {
                 // chase the crystal
-                isPlayed = false;
                 endpos = targetxpos + targetypos * (xmax + 1);
             }
             else if (hippostate == 2 || hippostate == 3)
@@ -211,16 +228,15 @@ public class EnemyMovement : MonoBehaviour
                 // Chase Player chases to the player location
                 endpos = playerx + playery * (xmax + 1);
 
-                if (!isPlayed)
+                if (!alertSrc.isPlaying)
                 {
-                    audioSrc.Play();
-                    isPlayed = true;
+                    alertSrc.Play();
                 }
             }
 
             // if hippo is already at target position, then set idle animation and go back to unalerted
             if (startpos == endpos)
-            {
+            { 
                 myAnim.SetTrigger("Idle");
                 hippostate = 0;
             }
