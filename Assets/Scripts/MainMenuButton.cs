@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class MainMenuButton : MonoBehaviour
 {
     void Start() {
-
     }
 
     // When start button is pressed

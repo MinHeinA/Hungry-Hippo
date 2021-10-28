@@ -9,6 +9,7 @@ public class GameOverScreen : MonoBehaviour
     public static bool gameIsOver = false;
     public TextMeshProUGUI gameOverTextUI;
     public GameObject gameOverUI;
+    public AudioSource deathSound;
 
     void Start()
     {
@@ -33,5 +34,9 @@ public class GameOverScreen : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
-    
+
+    public void PlayDeathSound()
+    {
+        deathSound.Play(0);
+    }
 }

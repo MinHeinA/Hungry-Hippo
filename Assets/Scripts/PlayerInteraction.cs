@@ -17,21 +17,26 @@ public class PlayerInteraction : MonoBehaviour
         crystalScore.text = crystalCollected.ToString() + " / " + noOfCrystals.ToString();
     }
 
-    private void GameOver(string txt)
+    private void GameOver(string txt, bool isDead)
     {
         gameOverScreen.Setup(txt);
+
+        if (isDead)
+        {
+            gameOverScreen.PlayDeathSound();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Finish" && crystalCollected == noOfCrystals)
         {
-            GameOver("YOU WIN!");
+            GameOver("YOU WIN!", false);
         }
 
         if (collision.gameObject.tag == "Enemy")
         {
-            GameOver("YOU DIED!");
+            GameOver("YOU DIED!", true);
         }
 
         //Debug.Log(collision.gameObject.name);
