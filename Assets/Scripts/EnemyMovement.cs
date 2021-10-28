@@ -10,8 +10,6 @@ public class EnemyMovement : MonoBehaviour
     // public variables
     public float movementRate = 0.01f;
     public int xmin = 0, xmax = 15, ymin = 0, ymax = 6;
-    public Tilemap secondLayerTilemap;
-    public Tilemap groundTilemap;
     public int minSquare = 3;
     public float stunTime = 1f;
     public AudioSource footStepsSrc;
@@ -34,6 +32,11 @@ public class EnemyMovement : MonoBehaviour
     Color hippoTint;
     bool alertedAudioPlayed = false;
 
+    [SerializeField]
+    Tilemap secondLayerTilemap;
+    [SerializeField]
+    Tilemap groundTilemap;
+
 
     private void Start()
     {
@@ -41,6 +44,8 @@ public class EnemyMovement : MonoBehaviour
         player = FindObjectOfType<PlayerAction>().transform;
         myAnim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        groundTilemap = GameObject.Find("Ground").GetComponent<Tilemap>();
+        secondLayerTilemap = GameObject.Find("2ndLayer").GetComponent<Tilemap>();
         hippostate = 0;
         xpos = Mathf.Round(transform.position.x);
         ypos = Mathf.Round(transform.position.y);

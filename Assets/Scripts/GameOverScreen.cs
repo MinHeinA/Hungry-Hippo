@@ -9,7 +9,9 @@ public class GameOverScreen : MonoBehaviour
     public static bool gameIsOver = false;
     public TextMeshProUGUI gameOverTextUI;
     public GameObject gameOverUI;
+    public GameObject playerUI;
     public AudioSource deathSound;
+    public AudioSource bgSound;
 
     void Start()
     {
@@ -19,7 +21,9 @@ public class GameOverScreen : MonoBehaviour
     {
         Time.timeScale = 0f;
         gameOverUI.SetActive(true);
+        playerUI.SetActive(false);
         gameOverTextUI.text = gameOverText;
+        bgSound.Stop();
         gameIsOver = true;
     }
     public bool isGameOver()
