@@ -137,17 +137,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementRate: 0.05
   xmin: 0
-  xmax: 15
+  xmax: 100
   ymin: 0
-  ymax: 16
-  secondLayerTilemap: {fileID: 0}
-  groundTilemap: {fileID: 0}
+  ymax: 100
   minSquare: 3
   stunTime: 1
   footStepsSrc: {fileID: 828910904}
   alertSrc: {fileID: 4840203992025159432}
   bruhSrc: {fileID: 1802329954}
   audioClips: []
+  secondLayerTilemap: {fileID: 0}
+  groundTilemap: {fileID: 0}
 --- !u!82 &828910904
 AudioSource:
   m_ObjectHideFlags: 0
@@ -350,9 +350,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d167824b57a6c2c48bec0f64646c5a47, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a84dcd78bb0c1cf43a7637cc173eee2f, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
