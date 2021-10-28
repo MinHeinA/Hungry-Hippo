@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     // Handle User Input and animator variable assignments
     void Update()
     {
+        // Debug.Log(GameOverScreen.gameIsOver);
         if (!GameOverScreen.gameIsOver && !PauseMenu.gameIsPaused)
         {
             movement.x = Input.GetAxisRaw("Horizontal");
