@@ -11,6 +11,6 @@ public class MainMenuButton : MonoBehaviour
     // When start button is pressed
     public void StartButton() {
         Time.timeScale = 1;
-        SceneManager.LoadScene("Level_1");
+        SceneManager.LoadScene("LevelSelector");
     }
 }

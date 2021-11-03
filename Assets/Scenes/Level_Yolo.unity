@@ -52872,6 +52872,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3711576648061892845, guid: f6e086cf0b2086e48a88feb3fbcaaecc, type: 3}
+      propertyPath: score
+      value: 
+      objectReference: {fileID: 669607944}
+    - target: {fileID: 3711576648061892845, guid: f6e086cf0b2086e48a88feb3fbcaaecc, type: 3}
       propertyPath: crystalScore
       value: 
       objectReference: {fileID: 669607944}

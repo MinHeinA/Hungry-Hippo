@@ -6,15 +6,15 @@ using System.Threading;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    private int crystalCollected = 0;
-    private int noOfCrystals = 0;
-    public TextMeshProUGUI crystalScore;
+    private int mandrakeCollected = 0;
+    private int noOfMandrakes = 0;
+    public TextMeshProUGUI score;
     public GameOverScreen gameOverScreen;
 
     private void Start()
     {
-        noOfCrystals = GameObject.FindGameObjectsWithTag("Crystal").Length;
-        crystalScore.text = crystalCollected.ToString() + " / " + noOfCrystals.ToString();
+        noOfMandrakes = GameObject.FindGameObjectsWithTag("Mandrake").Length;
+        score.text = mandrakeCollected.ToString() + " / " + noOfMandrakes.ToString();
     }
 
     private void GameOver(string txt, bool isDead)
@@ -29,7 +29,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Finish" && crystalCollected == noOfCrystals)
+        if (collision.gameObject.tag == "Finish" && mandrakeCollected == noOfMandrakes)
         {
             GameOver("YOU WIN!", false);
         }
@@ -40,15 +40,15 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         //Debug.Log(collision.gameObject.name);
-        if (collision.gameObject.tag == "Crystal")
+        if (collision.gameObject.tag == "Mandrake")
         {
-            crystalCollected++;
-            crystalScore.text = crystalCollected.ToString() + " / " + noOfCrystals.ToString();
+            mandrakeCollected++;
+            score.text = mandrakeCollected.ToString() + " / " + noOfMandrakes.ToString();
             collision.gameObject.GetComponent<Mandrake>().PlayShriek();
             GameObject.Find("One shot audio").GetComponent<AudioSource>().spatialBlend = 0.0f;
 
             EnemyMovement[] enemies = FindObjectsOfType<EnemyMovement>();
-            if (crystalCollected == noOfCrystals)
+            if (mandrakeCollected == noOfMandrakes)
             {
                 foreach (EnemyMovement enemy in enemies)
                 {
@@ -60,13 +60,13 @@ public class PlayerInteraction : MonoBehaviour
                 // make only the nearest enemy go to mandrake
                 int minindex = 0;
                 float mindist = -1f;
-                float crystalx = collision.gameObject.transform.position.x, crystaly = collision.gameObject.transform.position.y;
+                float mandrakex = collision.gameObject.transform.position.x, mandrakey = collision.gameObject.transform.position.y;
 
                 for (int i = 0; i < enemies.Length; i++)
                 {
                     float enemyx = enemies[i].gameObject.transform.position.x, enemyy = enemies[i].gameObject.transform.position.y;
                     // calculate distance of hippo to crystal
-                    float dist = (crystalx - enemyx) * (crystalx - enemyx) + (crystaly - enemyy) * (crystaly - enemyy);
+                    float dist = (mandrakex - enemyx) * (mandrakex - enemyx) + (mandrakey - enemyy) * (mandrakey - enemyy);
                     if (mindist == -1f || dist < mindist)
                     {
                         minindex = i;
@@ -74,12 +74,12 @@ public class PlayerInteraction : MonoBehaviour
                     }
                 }
 
-                enemies[minindex].ChaseCrystal((int)crystalx, (int)crystaly);
+                enemies[minindex].ChaseCrystal((int)mandrakex, (int)mandrakey);
             }
 
             Destroy(collision.gameObject);
         }
-       
+
         if (collision.gameObject.tag == "Battery")
         {
             FindObjectOfType<FlashLight>().rechargeBattery();

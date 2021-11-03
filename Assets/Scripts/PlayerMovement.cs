@@ -50,11 +50,12 @@ public class PlayerMovement : MonoBehaviour
         if (FindObjectOfType<GameOverScreen>().isGameOver())
         {
             audioSrc.Stop();
-        } else
+        }
+        else
         {
             PlayerMove();
             RotateFlashlight();
-        } 
+        }
     }
 
     void PlayerMove()
@@ -63,14 +64,18 @@ public class PlayerMovement : MonoBehaviour
         if (canMoveOnX && movement.x != 0)
         {
             canMoveOnY = false;
-            // rb2D.velocity = new Vector2 (movement.x, 0.0f) * moveSpeed;
+            //rb2D.velocity = new Vector2 (movement.x, 0.0f) * moveSpeed;
             rb2D.MovePosition(rb2D.position + new Vector2(movement.x, 0.0f) * moveSpeed * Time.fixedDeltaTime);
         }
-        if (canMoveOnY && movement.y != 0)
+        else if (canMoveOnY && movement.y != 0)
         {
             canMoveOnX = false;
-            // rb2D.velocity = new Vector2(0.0f, movement.y) * moveSpeed;
+            //rb2D.velocity = new Vector2(0.0f, movement.y) * moveSpeed;
             rb2D.MovePosition(rb2D.position + new Vector2(0.0f, movement.y) * moveSpeed * Time.fixedDeltaTime);
+        }
+        else
+        {
+            rb2D.MovePosition(rb2D.position + new Vector2(0.0f, 0.0f));
         }
         if (movement.y == 0)
         {
@@ -103,16 +108,17 @@ public class PlayerMovement : MonoBehaviour
         {
             rotationVector.z = 90;
             flashLight.transform.rotation = Quaternion.Euler(rotationVector);
-        } 
-        else if (movement.x < -0.1f && canMoveOnX) { 
+        }
+        else if (movement.x < -0.1f && canMoveOnX)
+        {
             rotationVector.z = -90;
-            flashLight.transform.rotation = Quaternion.Euler(rotationVector); 
-        } 
+            flashLight.transform.rotation = Quaternion.Euler(rotationVector);
+        }
         else if (movement.y > 0.1f && canMoveOnY)
         {
             rotationVector.z = 180;
             flashLight.transform.rotation = Quaternion.Euler(rotationVector);
-        } 
+        }
         else if (movement.y < -0.1f && canMoveOnY)
         {
             rotationVector.z = 0;

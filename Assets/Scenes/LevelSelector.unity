@@ -155,7 +155,7 @@ RectTransform:
   m_Children:
   - {fileID: 454321305}
   m_Father: {fileID: 1205998893}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -207,8 +207,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1514130236}
-        m_TargetAssemblyTypeName: MainMenuButton, Assembly-CSharp
-        m_MethodName: StartButton
+        m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
+        m_MethodName: GhButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -422,7 +422,7 @@ RectTransform:
   m_Children:
   - {fileID: 251630733}
   m_Father: {fileID: 1205998893}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -474,8 +474,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1514130236}
-        m_TargetAssemblyTypeName: MainMenuButton, Assembly-CSharp
-        m_MethodName: StartButton
+        m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
+        m_MethodName: BruhButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -689,7 +689,7 @@ RectTransform:
   m_Children:
   - {fileID: 1313640674}
   m_Father: {fileID: 1205998893}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -741,8 +741,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1514130236}
-        m_TargetAssemblyTypeName: MainMenuButton, Assembly-CSharp
-        m_MethodName: StartButton
+        m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
+        m_MethodName: SlButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -822,11 +822,11 @@ RectTransform:
   m_Children:
   - {fileID: 1011896969}
   m_Father: {fileID: 1205998893}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -13.999987, y: -128.08238}
+  m_AnchoredPosition: {x: -8, y: -101}
   m_SizeDelta: {x: 196.0128, y: 51.5343}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &617589822
@@ -874,8 +874,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1514130236}
-        m_TargetAssemblyTypeName: MainMenuButton, Assembly-CSharp
-        m_MethodName: StartButton
+        m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
+        m_MethodName: ReButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1034,7 +1034,7 @@ RectTransform:
   m_Children:
   - {fileID: 1509906964}
   m_Father: {fileID: 1205998893}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1086,8 +1086,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1514130236}
-        m_TargetAssemblyTypeName: MainMenuButton, Assembly-CSharp
-        m_MethodName: StartButton
+        m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
+        m_MethodName: NewbieButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1167,11 +1167,11 @@ RectTransform:
   m_Children:
   - {fileID: 1220323473}
   m_Father: {fileID: 1205998893}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -13.999987, y: 7.452812}
+  m_AnchoredPosition: {x: -8, y: 7.452812}
   m_SizeDelta: {x: 196.0128, y: 51.5343}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &776458958
@@ -1219,8 +1219,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1514130236}
-        m_TargetAssemblyTypeName: MainMenuButton, Assembly-CSharp
-        m_MethodName: StartButton
+        m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
+        m_MethodName: KaiButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1509,11 +1509,11 @@ RectTransform:
   m_Children:
   - {fileID: 1071214948}
   m_Father: {fileID: 1205998893}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -14, y: 121}
+  m_AnchoredPosition: {x: -8, y: 121.00006}
   m_SizeDelta: {x: 196.0128, y: 51.5343}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1036648715
@@ -1561,8 +1561,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1514130236}
-        m_TargetAssemblyTypeName: MainMenuButton, Assembly-CSharp
-        m_MethodName: StartButton
+        m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
+        m_MethodName: AmesButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1836,6 +1836,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 655285944}
+  - {fileID: 2054067625}
   - {fileID: 765054757}
   - {fileID: 1036648714}
   - {fileID: 6127624}
@@ -1843,7 +1844,6 @@ RectTransform:
   - {fileID: 776458957}
   - {fileID: 552253043}
   - {fileID: 617589821}
-  - {fileID: 2054067625}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2521,7 +2521,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1514130232}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0503e3f15a565c4e8c780c9935af3b7, type: 3}
+  m_Script: {fileID: 11500000, guid: 64985375a505da443a787707551546fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1553697326
@@ -2705,12 +2705,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1205998893}
-  m_RootOrder: 8
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -65, y: 166}
-  m_SizeDelta: {x: 376.3961, y: 158.9196}
+  m_AnchoredPosition: {x: -40, y: 222}
+  m_SizeDelta: {x: 1112.0173, y: 65.7363}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2054067626
 MonoBehaviour:
