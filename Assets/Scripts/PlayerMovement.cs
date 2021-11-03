@@ -63,14 +63,14 @@ public class PlayerMovement : MonoBehaviour
         if (canMoveOnX && movement.x != 0)
         {
             canMoveOnY = false;
-            rb2D.velocity = new Vector2 (movement.x, 0.0f) * moveSpeed;
-            //rb2D.MovePosition(rb2D.position + new Vector2(movement.x, 0.0f) * moveSpeed * Time.fixedDeltaTime);
+            // rb2D.velocity = new Vector2 (movement.x, 0.0f) * moveSpeed;
+            rb2D.MovePosition(rb2D.position + new Vector2(movement.x, 0.0f) * moveSpeed * Time.fixedDeltaTime);
         }
         if (canMoveOnY && movement.y != 0)
         {
             canMoveOnX = false;
-            rb2D.velocity = new Vector2(0.0f, movement.y) * moveSpeed;
-            //rb2D.MovePosition(rb2D.position + new Vector2(0.0f, movement.y) * moveSpeed * Time.fixedDeltaTime);
+            // rb2D.velocity = new Vector2(0.0f, movement.y) * moveSpeed;
+            rb2D.MovePosition(rb2D.position + new Vector2(0.0f, movement.y) * moveSpeed * Time.fixedDeltaTime);
         }
         if (movement.y == 0)
         {
