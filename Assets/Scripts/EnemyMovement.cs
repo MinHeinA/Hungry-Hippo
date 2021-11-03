@@ -149,7 +149,8 @@ public class EnemyMovement : MonoBehaviour
         if (FindObjectOfType<GameOverScreen>().isGameOver())
         {
             footStepsSrc.Stop();
-        } else
+        }
+        else
         {
             if (!footStepsSrc.isPlaying)
             {
@@ -241,12 +242,12 @@ public class EnemyMovement : MonoBehaviour
 
             // if hippo is already at target position, then set idle animation and go back to unalerted
             if (startpos == endpos)
-            { 
+            {
                 myAnim.SetTrigger("Idle");
                 hippostate = 0;
             }
 
-            int dir = BFS((int)startpos, (int)endpos);
+            int dir = AStar((int)startpos, (int)endpos);
 
             if (dir == 0) return;
             else
@@ -274,91 +275,109 @@ public class EnemyMovement : MonoBehaviour
                 else if (dir == 4) myAnim.SetTrigger("WalkLeft");
             }
         }
+    }
 
-        // Breadth First Search
-        int BFS(int startnode, int endnode)
+    // Manhattan Distance
+    int estimateddist(int startnode, int endnode)
+    {
+        int startx = startnode % (xmax + 1), starty = startnode / (xmax + 1);
+        int endx = startnode % (xmax + 1), endy = startnode / (xmax + 1);
+
+        return Mathf.Abs(startx - endx) + Mathf.Abs(starty - endy);
+    }
+
+    // A* Search
+    int AStar(int startnode, int endnode)
+    {
+        // node position is given by y*width + x
+        // (bool) array of size [width*height] - contains whether the node position is visited
+        bool[] isVisited = new bool[(xmax + 1) * (ymax + 1)];
+        // (int) direction array of size [width*height] - contains direction variable (0 - undef, 1 - up, 2 - right, 3 - down, 4 - left)
+        int[] dir = new int[(xmax + 1) * (ymax + 1)];
+        // (int) total distance to current node
+        int[] dist = new int[(xmax + 1) * (ymax + 1)];
+        // queue to determine the order of expanding nodes
+        PQueue<int> node = new PQueue<int>(); // First start with empty queue
+
+        // Set inaccessible positions as visited in visited list
+        // Positions: (14, 1), (14, 2), (12, 3), (12, 4), (12, 5), (9, 2), (9, 3), (9, 4), (5, 2), (5, 3), (5, 4)
+        // (2, 3), (2, 4), (2, 5)
+        // int[] obstaclex = { 14, 14, 12, 12, 12, 9, 9, 9, 5, 5, 5, 2, 2, 2 };
+        // int[] obstacley = { 1, 2, 3, 4, 5, 2, 3, 4, 2, 3, 4, 3, 4, 5 };
+        for (int i = 0; i < obstacleCoords.Length; i++)
         {
-            // node position is given by y*width + x
-            // (bool) array of size [width*height] - contains whether the node position is visited
-            bool[] isVisited = new bool[(xmax + 1) * (ymax + 1)];
-            // (int) direction array of size [width*height] - contains direction variable (0 - undef, 1 - up, 2 - right, 3 - down, 4 - left)
-            int[] dir = new int[(xmax + 1) * (ymax + 1)];
-            // queue to determine the order of expanding nodes
-            Queue<int> node = new Queue<int>(); // First start with empty queue
-
-            // Set inaccessible positions as visited in visited list
-            // Positions: (14, 1), (14, 2), (12, 3), (12, 4), (12, 5), (9, 2), (9, 3), (9, 4), (5, 2), (5, 3), (5, 4)
-            // (2, 3), (2, 4), (2, 5)
-            // int[] obstaclex = { 14, 14, 12, 12, 12, 9, 9, 9, 5, 5, 5, 2, 2, 2 };
-            // int[] obstacley = { 1, 2, 3, 4, 5, 2, 3, 4, 2, 3, 4, 3, 4, 5 };
-            for (int i = 0; i < obstacleCoords.Length; i++)
-            {
-                int x = Int32.Parse(obstacleCoords[i].Split(';')[0]);
-                int y = Int32.Parse(obstacleCoords[i].Split(';')[1]);
-                isVisited[x + y * (xmax + 1)] = true;
-            }
-
-
-            // Add in hippo position as initial node in queue
-            node.Enqueue(startnode);
-
-            // While queue is not empty
-            while (node.Count > 0)
-            {
-                // Pop first node in queue
-                int curnode = node.Dequeue();
-
-                // If node is end position, return direction variable in that node
-                if (curnode == endnode) return dir[curnode];
-
-                // 1. Add in neighbours of element into queue if not in visited list
-                // 2. Add in neighbours of element into visited list
-                // 3. Set the neighbours' direction variable
-                int curx = (int)(curnode % (xmax + 1));
-                int cury = (int)(curnode / (xmax + 1));
-                int upnode = curx + (cury + 1) * (xmax + 1), downnode = curx + (cury - 1) * (xmax + 1),
-                rightnode = (curx + 1) + cury * (xmax + 1), leftnode = (curx - 1) + cury * (xmax + 1);
-
-                // Up
-                if (cury < ymax && !isVisited[upnode])
-                {
-                    node.Enqueue(upnode);
-                    isVisited[upnode] = true;
-                    if (dir[curnode] > 0) dir[upnode] = dir[curnode];
-                    else dir[upnode] = 1;
-                }
-
-                // Right
-                if (curx < xmax && !isVisited[rightnode])
-                {
-                    node.Enqueue(rightnode);
-                    isVisited[rightnode] = true;
-                    if (dir[curnode] > 0) dir[rightnode] = dir[curnode];
-                    else dir[rightnode] = 2;
-                }
-
-                // Down
-                if (cury > ymin && !isVisited[downnode])
-                {
-                    node.Enqueue(downnode);
-                    isVisited[downnode] = true;
-                    if (dir[curnode] > 0) dir[downnode] = dir[curnode];
-                    else dir[downnode] = 3;
-                }
-
-                // Left
-                if (curx > xmin && !isVisited[leftnode])
-                {
-                    node.Enqueue(leftnode);
-                    isVisited[leftnode] = true;
-                    if (dir[curnode] > 0) dir[leftnode] = dir[curnode];
-                    else dir[leftnode] = 4;
-                }
-            }
-
-            return 0;
-
+            int x = Int32.Parse(obstacleCoords[i].Split(';')[0]);
+            int y = Int32.Parse(obstacleCoords[i].Split(';')[1]);
+            isVisited[x + y * (xmax + 1)] = true;
         }
 
+
+        // Add in hippo position as initial node in queue
+        node.Enqueue(startnode, 0);
+        dist[startnode] = 0;
+
+        // While queue is not empty
+        while (node.Count > 0)
+        {
+            // Pop first node in queue
+            // TODO: Pop node with highest priority
+            int curnode = node.Dequeue();
+
+            // If node is end position, return direction variable in that node
+            if (curnode == endnode) return dir[curnode];
+
+            // 1. Add in neighbours of element into queue if not in visited list
+            // 2. Add in neighbours of element into visited list
+            // 3. Set the neighbours' direction variable
+            int curx = (int)(curnode % (xmax + 1));
+            int cury = (int)(curnode / (xmax + 1));
+            int upnode = curx + (cury + 1) * (xmax + 1), downnode = curx + (cury - 1) * (xmax + 1),
+            rightnode = (curx + 1) + cury * (xmax + 1), leftnode = (curx - 1) + cury * (xmax + 1);
+
+            // TODO: When storing the node, store the current distance to node + heuristic distance to end goal.
+            // Heuristic distance used is Manhattan distance |x1-x2|+|y1-y2|
+
+            // Up
+            if (cury < ymax && !isVisited[upnode])
+            {
+                dist[upnode] = dist[curnode] + 1;
+                node.Enqueue(upnode, dist[upnode] + estimateddist(upnode, endnode));
+                isVisited[upnode] = true;
+                if (dir[curnode] > 0) dir[upnode] = dir[curnode];
+                else dir[upnode] = 1;
+            }
+
+            // Right
+            if (curx < xmax && !isVisited[rightnode])
+            {
+                dist[rightnode] = dist[curnode] + 1;
+                node.Enqueue(rightnode, dist[rightnode] + estimateddist(rightnode, endnode));
+                isVisited[rightnode] = true;
+                if (dir[curnode] > 0) dir[rightnode] = dir[curnode];
+                else dir[rightnode] = 2;
+            }
+
+            // Down
+            if (cury > ymin && !isVisited[downnode])
+            {
+                dist[downnode] = dist[curnode] + 1;
+                node.Enqueue(downnode, dist[downnode] + estimateddist(downnode, endnode));
+                isVisited[downnode] = true;
+                if (dir[curnode] > 0) dir[downnode] = dir[curnode];
+                else dir[downnode] = 3;
+            }
+
+            // Left
+            if (curx > xmin && !isVisited[leftnode])
+            {
+                dist[leftnode] = dist[curnode] + 1;
+                node.Enqueue(leftnode, dist[leftnode] + estimateddist(leftnode, endnode));
+                isVisited[leftnode] = true;
+                if (dir[curnode] > 0) dir[leftnode] = dir[curnode];
+                else dir[leftnode] = 4;
+            }
+        }
+
+        return 0;
     }
 }
