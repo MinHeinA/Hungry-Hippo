@@ -9,6 +9,7 @@ TagManager:
   - Battery
   - StickyTrap
   - Flashlight
+  - Mandrake
   layers:
   - Default
   - TransparentFX
