@@ -1233,7 +1233,7 @@ GameObject:
   - component: {fileID: 669607945}
   - component: {fileID: 669607944}
   m_Layer: 5
-  m_Name: CrystalScore_TMP
+  m_Name: MandrakeScore_TMP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19215,7 +19215,7 @@ GameObject:
   - component: {fileID: 1920412340}
   - component: {fileID: 1920412339}
   m_Layer: 5
-  m_Name: Crystal
+  m_Name: Mandrake_Img
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19288,7 +19288,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1920477445}
   m_Layer: 5
-  m_Name: CrystalScore
+  m_Name: MandrakeScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
