@@ -12,6 +12,7 @@ public class EnemyMovement : MonoBehaviour
     public float movementRate = 0.01f;
     public int xmin = 0, xmax = 15, ymin = 0, ymax = 6;
     public int minSquare = 6;
+    public int maxSquare = 15;
     public float stunTime = 1f;
     public AudioSource footStepsSrc;
     public AudioSource alertSrc;
@@ -191,6 +192,9 @@ public class EnemyMovement : MonoBehaviour
             if (hippostate <= 1 &&
             Mathf.Pow(playerx - transform.position.x, 2) + Mathf.Pow(playery - transform.position.y, 2) < minSquare * minSquare)
                 hippostate = 2;
+            if (hippostate == 2 &&
+            Mathf.Pow(playerx - transform.position.x, 2) + Mathf.Pow(playery - transform.position.y, 2) > maxSquare * maxSquare)
+                hippostate = 0;
 
             if (hippostate <= 2) spriteRenderer.color = HexToColor("#FFFFFF");
 

@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    
+    public float normalSpeed = 5f;
+    public float slowSpeed = 3f;
+    float moveSpeed;
 
     public Rigidbody2D rb2D;
 
@@ -19,6 +22,11 @@ public class PlayerMovement : MonoBehaviour
     Vector2 movement;
 
     bool canMoveOnX, canMoveOnY = false;
+
+    private void Start()
+    {
+        moveSpeed = normalSpeed;
+    }
 
     // Handle User Input and animator variable assignments
     void Update()
@@ -144,13 +152,13 @@ public class PlayerMovement : MonoBehaviour
 
     public void slowPlayer()
     {
-        moveSpeed = 2f;
+        moveSpeed = slowSpeed;
         isSlow = true;
     }
 
     public void resetPlayerSpeed()
     {
-        moveSpeed = 5f;
+        moveSpeed = normalSpeed;
         isSlow = false;
     }
 }
