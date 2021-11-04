@@ -95,6 +95,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (!mudAudio.isPlaying)
                 {
+                    audioSrc.Stop();
                     mudAudio.Play();
                 }
             }
@@ -102,6 +103,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (!audioSrc.isPlaying)
                 {
+                    mudAudio.Stop();
                     audioSrc.Play();
                 }
             }

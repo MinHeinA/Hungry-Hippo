@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: 5407781178676451472}
   - component: {fileID: 5407781178676451566}
   - component: {fileID: 4946871406181661905}
-  - component: {fileID: 4946871407595295684}
+  - component: {fileID: 1100530104}
   m_Layer: 0
   m_Name: Mandrake
   m_TagString: Mandrake
@@ -100,7 +100,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5407781178676451475}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.87, y: 10.3, z: 20.442196}
+  m_LocalPosition: {x: 4.87, y: 10.3, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 0.02}
   m_Children:
   - {fileID: 2544986161741232176}
@@ -197,13 +197,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   light2D: {fileID: 0}
-  audioSrc: {fileID: 4946871407595295684}
+  audioSrc: {fileID: 1100530104}
   audioClips:
   - {fileID: 8300000, guid: e420f4aca1980584a9bc9449286fadfa, type: 3}
   - {fileID: 8300000, guid: 367766c8099bab648a893950504436e7, type: 3}
   - {fileID: 8300000, guid: ee727a8bf636a6643be4d4bc80b7e2ed, type: 3}
   - {fileID: 8300000, guid: 9d5df653e7135364ab09ccddb10a3e13, type: 3}
---- !u!82 &4946871407595295684
+--- !u!82 &1100530104
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -213,9 +213,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e420f4aca1980584a9bc9449286fadfa, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 2c460ac2c2e1c3440824efd64615c61c, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -234,23 +234,23 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 1
+      time: 0.014705658
+      value: 0.98916245
       inSlope: 0
       outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -2
+      outSlope: -2
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4

@@ -2,23 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Navigator : MonoBehaviour
+public class DetectorWisp : MonoBehaviour
 {
-    Transform targetItem;
+    Transform enemyTarget;
     GameObject wisp;
+
+    public float detectRadius = 4f;
 
     // Update is called once per frame
     public void Start()
     {
         wisp = transform.GetChild(0).gameObject;
     }
+    public void SetTarget(Transform target)
+    {
+        enemyTarget = target;
+    }
     void Update()
     {
         SetClosestTarget();
-        if (targetItem)
+        float distToEnemy = Vector3.Distance(transform.position, enemyTarget.position);
+        Debug.Log(distToEnemy);
+        if (enemyTarget && distToEnemy < detectRadius)
         {
             if (!wisp.activeInHierarchy) { wisp.SetActive(true); }
-            LookAtTarget(targetItem);
+            LookAtTarget(enemyTarget);
         }
         else
         {
@@ -36,18 +44,22 @@ public class Navigator : MonoBehaviour
     }
     private void SetClosestTarget()
     {
-        GameObject[] sceneItems = GameObject.FindGameObjectsWithTag("Mandrake");
-        if (sceneItems.Length == 0) {
-            targetItem = GameObject.FindGameObjectWithTag("Finish").transform;
-            return; 
-        }
-        Transform closestItem = sceneItems[0].transform;
-        foreach (GameObject testItem in sceneItems)
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        if (enemies.Length > 1)
         {
-            closestItem = GetClosest(closestItem, testItem.transform);
-        }
+            Transform closestEnemy = enemies[0].transform;
+            foreach (GameObject enemy in enemies)
+            {
+                closestEnemy = GetClosest(closestEnemy, enemy.transform);
+            }
 
-        targetItem = closestItem.GetChild(0);
+            enemyTarget = closestEnemy.GetChild(0);
+        }
+        else
+        {
+            enemyTarget = enemies[0].transform;
+        }
+        
     }
 
     private Transform GetClosest(Transform transformA, Transform transformB)

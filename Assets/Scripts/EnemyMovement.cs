@@ -4,18 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class EnemyMovement : MonoBehaviour
 {
     // public variables
     public float movementRate = 0.01f;
     public int xmin = 0, xmax = 15, ymin = 0, ymax = 6;
-    public int minSquare = 3;
+    public int minSquare = 6;
     public float stunTime = 1f;
     public AudioSource footStepsSrc;
     public AudioSource alertSrc;
     public AudioSource bruhSrc;
     public AudioClip[] audioClips;
+    public GameObject redTintPanel;
 
     // private variables
     Transform player;
@@ -42,6 +44,7 @@ public class EnemyMovement : MonoBehaviour
     {
         isObstacle = new bool[(xmax + 1) * (ymax + 1)];
         player = FindObjectOfType<PlayerAction>().transform;
+        redTintPanel = FindObjectOfType<ColorLerp>().gameObject;
         myAnim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         groundTilemap = GameObject.Find("Ground").GetComponent<Tilemap>();
@@ -197,6 +200,7 @@ public class EnemyMovement : MonoBehaviour
             if (hippostate == 0)
             {
                 int newxpos = (int)transform.position.x, newypos = (int)transform.position.y;
+                redTintPanel.SetActive(false);
                 do
                 {
                     int newdir = UnityEngine.Random.Range(0, 4);
@@ -228,12 +232,13 @@ public class EnemyMovement : MonoBehaviour
             {
                 // chase the crystal
                 endpos = targetxpos + targetypos * (xmax + 1);
+                redTintPanel.SetActive(false);
             }
             else if (hippostate == 2 || hippostate == 3)
             {
                 // Chase Player chases to the player location
                 endpos = playerx + playery * (xmax + 1);
-
+                redTintPanel.SetActive(true);
                 if (!alertSrc.isPlaying)
                 {
                     alertSrc.Play();
