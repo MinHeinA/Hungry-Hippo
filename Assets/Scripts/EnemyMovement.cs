@@ -12,7 +12,7 @@ public class EnemyMovement : MonoBehaviour
     public float movementRate = 0.01f;
     public int xmin = 0, xmax = 15, ymin = 0, ymax = 6;
     public int minSquare = 6;
-    public int maxSquare = 15;
+    public int maxSquare = 9;
     public float stunTime = 1f;
     public AudioSource footStepsSrc;
     public AudioSource alertSrc;

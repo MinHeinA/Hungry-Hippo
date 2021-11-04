@@ -141,6 +141,7 @@ MonoBehaviour:
   ymin: 0
   ymax: 100
   minSquare: 3
+  maxSquare: 9
   stunTime: 1
   footStepsSrc: {fileID: 828910904}
   alertSrc: {fileID: 4840203992025159432}

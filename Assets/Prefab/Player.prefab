@@ -575,7 +575,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b4ab27cbcf54b64c965e1acd473ddbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  normalSpeed: 5
+  slowSpeed: 3
   rb2D: {fileID: 3711576648061892841}
   animator: {fileID: 3711576648061892846}
   flashLight: {fileID: 3711576647822568370}
