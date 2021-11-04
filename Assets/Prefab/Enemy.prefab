@@ -146,7 +146,7 @@ MonoBehaviour:
   alertSrc: {fileID: 4840203992025159432}
   bruhSrc: {fileID: 1802329954}
   audioClips: []
-  redTintPanel: {fileID: 0}
+  hippostate: 0
   secondLayerTilemap: {fileID: 0}
   groundTilemap: {fileID: 0}
 --- !u!82 &828910904
