@@ -11,8 +11,10 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
 
     public GameObject flashLight;
+    public bool isSlow = false;
 
     public AudioSource audioSrc;
+    public AudioSource mudAudio;
 
     Vector2 movement;
 
@@ -49,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (FindObjectOfType<GameOverScreen>().isGameOver())
         {
+            mudAudio.Stop();
             audioSrc.Stop();
         }
         else
@@ -88,13 +91,24 @@ public class PlayerMovement : MonoBehaviour
 
         if (!canMoveOnX || !canMoveOnY)
         {
-            if (!audioSrc.isPlaying)
+            if (isSlow)
             {
-                audioSrc.Play();
+                if (!mudAudio.isPlaying)
+                {
+                    mudAudio.Play();
+                }
+            }
+            else
+            {
+                if (!audioSrc.isPlaying)
+                {
+                    audioSrc.Play();
+                }
             }
         }
         else
         {
+            mudAudio.Stop();
             audioSrc.Stop();
         }
 
@@ -129,10 +143,12 @@ public class PlayerMovement : MonoBehaviour
     public void slowPlayer()
     {
         moveSpeed = 2f;
+        isSlow = true;
     }
 
     public void resetPlayerSpeed()
     {
         moveSpeed = 5f;
+        isSlow = false;
     }
 }

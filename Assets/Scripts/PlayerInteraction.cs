@@ -10,6 +10,7 @@ public class PlayerInteraction : MonoBehaviour
     private int noOfMandrakes = 0;
     public TextMeshProUGUI score;
     public GameOverScreen gameOverScreen;
+    public AudioSource audioData;
 
     private void Start()
     {
@@ -83,6 +84,7 @@ public class PlayerInteraction : MonoBehaviour
         if (collision.gameObject.tag == "Battery")
         {
             FindObjectOfType<FlashLight>().rechargeBattery();
+            audioData.Play(0);
             FindObjectOfType<FlashLight>().batteryDead = false;
             Destroy(collision.gameObject);
         }
