@@ -13,4 +13,16 @@ public class MainMenuButton : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene("LevelSelector");
     }
+
+    public void NextButton()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("LevelSelector2");
+    }
+
+    public void PreviousButton()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("LevelSelector");
+    }
 }
