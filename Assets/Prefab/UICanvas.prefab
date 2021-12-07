@@ -805,6 +805,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 2223121389742071308}
+  playerUI: {fileID: 2223121390897441632}
 --- !u!114 &2223121389755791603
 MonoBehaviour:
   m_ObjectHideFlags: 0
