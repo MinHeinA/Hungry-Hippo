@@ -27633,6 +27633,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: House
       objectReference: {fileID: 0}
+    - target: {fileID: 3289578691104118091, guid: b6529f91e33f68b4aaae1c4c5f3f5579, type: 3}
+      propertyPath: m_Size.y
+      value: 1.7479558
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289578691104118091, guid: b6529f91e33f68b4aaae1c4c5f3f5579, type: 3}
+      propertyPath: m_Offset.y
+      value: 1.4622557
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6529f91e33f68b4aaae1c4c5f3f5579, type: 3}
 --- !u!1001 &3711576647557454595
