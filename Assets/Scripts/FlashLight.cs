@@ -68,6 +68,12 @@ public class FlashLight : MonoBehaviour
         batteryStatus.SetMaxBatteryLevel(maxBrightness);
     }
 
+    public void EmptyBattery()
+    {
+        light2D.intensity = minBrightness;
+        batteryStatus.SetMaxBatteryLevel(minBrightness);
+    }
+
     public void ToogleFlashlight()
     {
         audioData.Play(0);
