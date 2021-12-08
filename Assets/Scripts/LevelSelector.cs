@@ -11,6 +11,12 @@ public class LevelSelector : MonoBehaviour
         
     }
 
+    public void TutorialButton()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Level_Tutorial");
+    }
+
     public void NewbieButton()
     {
         Time.timeScale = 1;
