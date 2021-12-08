@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TutorialEvent : MonoBehaviour
 {
@@ -10,17 +11,28 @@ public class TutorialEvent : MonoBehaviour
 
     void Start()
     {
-        //Empty Battery
-        pop = FindObjectOfType<PopUpSystem>();
-        pop.gameObject.SetActive(true);
-        Invoke("EmptyBattery", 0.5f);
-        //Show WASD Instructions
-        pop.PopUp("W,A,S,D - Move Up, Left, Down and Right, Space - Toggle Flashlight");
+        Debug.Log(SceneManager.GetActiveScene().name);
+        if (SceneManager.GetActiveScene().name == "Level_Tutorial")
+        {
+            //Empty Battery
+            pop = FindObjectOfType<PopUpSystem>();
+            pop.gameObject.SetActive(true);
+            Invoke("EmptyBattery", 0.1f);
+            //Show WASD Instructions
+            pop.PopUp("W,A,S,D - Move Up, Left, Down and Right, Space - Toggle Flashlight");
+            Invoke("SecondPopUp", 0.5f);
+        }
+        
     }
     void EmptyBattery()
     {
         FindObjectOfType<FlashLight>().EmptyBattery();
         FindObjectOfType<FlashLight>().batteryDead = true;  
+    }
+
+    void SecondPopUp()
+    {
+        pop.PopUp("Follow the wisp, it will guide you to the next objective");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

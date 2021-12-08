@@ -59,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (FindObjectOfType<GameOverScreen>().isGameOver())
         {
+            Debug.Log("Game Over");
             mudAudio.Stop();
             audioSrc.Stop();
         }

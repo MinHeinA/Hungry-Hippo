@@ -14,7 +14,7 @@ public class PopUpSystem : MonoBehaviour
         popUpBox.SetActive(true);
         popUpText.text = text;
         animator.SetTrigger("open");
-        Invoke("StopTime", 0.5f);
+        Invoke("StopTime", 0.3f);
     }
     void StopTime()
     {

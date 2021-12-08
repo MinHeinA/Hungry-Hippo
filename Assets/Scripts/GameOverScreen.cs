@@ -19,12 +19,16 @@ public class GameOverScreen : MonoBehaviour
     }
     public void Setup(string gameOverText)
     {
-        Time.timeScale = 0f;
         gameOverUI.SetActive(true);
         playerUI.SetActive(false);
         gameOverTextUI.text = gameOverText;
         bgSound.Stop();
         gameIsOver = true;
+        Invoke("StopTime", 0.1f);
+    }
+    void StopTime()
+    {
+        Time.timeScale = 0f;
     }
     public bool isGameOver()
     {
