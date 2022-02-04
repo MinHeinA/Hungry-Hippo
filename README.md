@@ -1,12 +1,12 @@
 NUS GDG Level 1 Game - Hungry Hippos 
 
-<br /><br />Play it at: https://minheina.itch.io/hungry-hippo
+<br />Play it at: https://minheina.itch.io/hungry-hippo
 
-<br /><br />Unity game made for NUS Game Development Group Level 1 Game. It is for educational purposes and is not intended for distribution or sale.
+<br />Unity game made for NUS Game Development Group Level 1 Game. It is for educational purposes and is not intended for distribution or sale.
 
 
 
-<br /><br />Controls:
+<br />Controls:
 
 (1) W,A,S,D - Move Up, Left, Down and Right
 
@@ -14,7 +14,7 @@ NUS GDG Level 1 Game - Hungry Hippos
 
 
 
- <br /><br />Rules:
+<br />Rules:
 
 (1) Collect all mandrakes in the map and return to your safe house to complete the level (just follow the friendly wisp).
 
@@ -28,7 +28,7 @@ NUS GDG Level 1 Game - Hungry Hippos
 
 
 
-<br /><br />Team Members:
+<br />Team Members:
 
 - Tan Chong Min - Project Manager, Programmer (Enemy AI)
 
@@ -48,7 +48,7 @@ NUS GDG Level 1 Game - Hungry Hippos
 
 
 
-<br /><br />Credits:
+<br />Credits:
 
 Art Assets -
 
