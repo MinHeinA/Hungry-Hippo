@@ -1,4 +1,4 @@
-NUS GDG Level 1 Game - Hungry Hippos
+NUS GDG Level 1 Game - Hungry Hippos <br /><br />
 
 Play it at: https://minheina.itch.io/hungry-hippo
 
